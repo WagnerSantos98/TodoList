@@ -69,6 +69,7 @@ button.add:hover{
 }
 
 .item{
+    text-align: start;
     display: flex;
     justify-content: space-between;
     border: 1px solid #363b65;
@@ -88,6 +89,7 @@ button.add:hover{
 }
 
 .item.completo{
+    text-align: start;
     display: flex;
     justify-content: space-between;
     background: #1e1f2e;
@@ -129,11 +131,16 @@ button.deleteAll{
     font-weight: 700;
     border-radius: 5px;
     cursor: pointer;
+    margin-top: 30px;
 }
 
 button.deleteAll:hover{
     background: #ff004c;
     color: #fff;
+}
+
+.icone-central{
+    width: 100%;
 }
 
 @media screen and (max-width: 900px){

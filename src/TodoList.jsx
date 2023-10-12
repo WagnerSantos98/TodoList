@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import './TodoList.css';
+import Image from './assets/list.svg';
 
 function TodoList(){
     
@@ -16,6 +17,18 @@ function TodoList(){
         document.getElementById("input-entrada").focus();
     }
 
+    function clicou(index){
+        const listAux = [...lista];
+        listAux[index].isCompleted = !listAux[index].isCompleted;
+        setLista(listAux);
+    }
+
+    function deleta(index){
+        const listAux = [...lista];
+        listAux.splice(index,1);
+        setLista(listAux);
+    }
+
     return(
         <div>
             <h1>Lista de Tarefas</h1>
@@ -24,20 +37,23 @@ function TodoList(){
                 <button className="add" type="submit">Add</button>
             </form>
             <div className="listaTarefas">
-                {
-                    lista.length <1
-                    ?
+                <div style={{textAlign: 'center'}}> 
+                    {
+                        lista.length < 1
+                        ?
+                        <img className="icone-central" src={Image}/>
+                        :
+                        lista.map((item, index) => (
+                            <div key={index} className={item.isCompleted ? "item completo" : "item"}>
+                            <span onClick={() => {clicou(index)}}>{item.text}</span>
+                            <button onClick={() => {deleta(index)}} className="del">Deletar</button>
+                        </div>
+                        ))
+                        
+                    }
                     
-                }
-                <div className="item">
-                    <span>Tarefa de exemplo</span>
-                    <button className="del">Deletar</button>
+                    <button className="deleteAll">Deletar Todas</button>
                 </div>
-                <div className="item completo">
-                    <span>Tarefa de exemplo</span>
-                    <button className="del">Deletar</button>
-                </div>
-                <button className="deleteAll">Deletar Todas</button>
             </div>
         </div>
     )
