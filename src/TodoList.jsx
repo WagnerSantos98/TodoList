@@ -1,10 +1,13 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import './TodoList.css';
 import Image from './assets/list.svg';
 
 function TodoList(){
+
+    const listaStorage = localStorage.getItem('Lista');
+
     
-    const [lista, setLista] = useState([]);
+    const [lista, setLista] = useState(listaStorage ? JSON.parse(listaStorage) : []);
     const [novoItem, setNovoItem] = useState("");
 
     function adicionaItem(form){
