@@ -29,6 +29,10 @@ function TodoList(){
         setLista(listAux);
     }
 
+    function deletaTudo(){
+        setLista([]);
+    }
+
     return(
         <div>
             <h1>Lista de Tarefas</h1>
@@ -51,8 +55,11 @@ function TodoList(){
                         ))
                         
                     }
+                    {
+                        lista.length > 0 && 
+                        <button onClick={() => {deletaTudo()}} className="deleteAll">Deletar Todas</button>
+                    }
                     
-                    <button className="deleteAll">Deletar Todas</button>
                 </div>
             </div>
         </div>
