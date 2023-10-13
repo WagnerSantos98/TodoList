@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from "react";
 import './TodoList.css';
 import Image from './assets/list.svg';
+import Trash from './assets/trash-can.svg';
+import Plus from './assets/plus.svg';
 
 function TodoList(){
 
@@ -9,6 +11,10 @@ function TodoList(){
     
     const [lista, setLista] = useState(listaStorage ? JSON.parse(listaStorage) : []);
     const [novoItem, setNovoItem] = useState("");
+
+    useEffect(() =>{
+        localStorage.setItem('Lista', JSON.stringify(lista));
+    }, [lista])
 
     function adicionaItem(form){
         form.preventDefault();
@@ -41,7 +47,7 @@ function TodoList(){
             <h1>Lista de Tarefas</h1>
             <form onSubmit={adicionaItem}>
                 <input id="input-entrada" value={novoItem} type="text" placeholder="Adicione uma tarefa" onChange={(e) => {setNovoItem(e.target.value)}}/>
-                <button className="add" type="submit">Add</button>
+                <button className="add" type="submit"><img className="plus" src={Plus}/></button>
             </form>
             <div className="listaTarefas">
                 <div style={{textAlign: 'center'}}> 
@@ -53,7 +59,7 @@ function TodoList(){
                         lista.map((item, index) => (
                             <div key={index} className={item.isCompleted ? "item completo" : "item"}>
                             <span onClick={() => {clicou(index)}}>{item.text}</span>
-                            <button onClick={() => {deleta(index)}} className="del">Deletar</button>
+                            <button onClick={() => {deleta(index)}} className="del"><img className="trash" src={Trash}/></button>
                         </div>
                         ))
                         

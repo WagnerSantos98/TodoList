@@ -143,6 +143,14 @@ button.deleteAll:hover{
     width: 70%;
 }
 
+.trash{
+    width: 50%;
+}
+
+.plus{
+    width: 50%;
+}
+
 @media screen and (max-width: 900px){
     form{
         width: 100%;
